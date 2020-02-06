@@ -142,6 +142,40 @@
 
                 </div>
 
+                <div class="form-group">
+                    <div style="display: flex; justify-content: space-between;">
+                        <button id=signalMinusFrom type="button" class="btn btn-outline-primary">–</button>
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">From</label>
+                            <input id=signalIdFrom readonly value="0">
+                        </div>
+                        <button id=signalPlusFrom type="button" class="btn btn-outline-primary">+</button>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between;">
+                        <button id=signalMinusTo type="button" class="btn btn-outline-primary">–</button>
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">To</label>
+                            <input id=signalIdTo readonly value="0">
+                        </div>
+                        <button id=signalPlusTo type="button" class="btn btn-outline-primary">+</button>
+                    </div>
+
+                    </br>
+
+                    <div style="display: flex; justify-content: space-between;">
+                        <button id=requestRouteButton type="button" class="btn btn-outline-primary" style="width: 49%;">Request</button>
+                        <button id=driveRouteButton type="button" class="btn btn-outline-primary" style="width: 49%;">Drive</button>
+                    </div>
+
+                    </br>
+
+                    <div class="alert alert-info" role="alert">
+                        <span id=routeResponse></span>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>

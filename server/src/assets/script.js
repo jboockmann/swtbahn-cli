@@ -212,56 +212,56 @@ $(document).ready(function() {
             $('#dccSpeed').val(lastSpeed);
         });
 
-        // $('#requestRouteButton').click(function() {
-        //     $('#routeResponse').text('Waiting');
-        //     source = $('#source').val();
-        //     destination = $('#destination').val();
-        //     if (sessionId != 0 && grabId != -1) {
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: url + '/driver/request-route',
-        //             crossDomain: true,
-        //             data: {
-        //                 'session-id': sessionId,
-        //                 'grab-id': grabId,
-        //                 'source': source,
-        //                 'destination': destination
-        //             },
-        //             dataType: 'text',
-        //             success: function(responseData, textStatus, jqXHR) {
-        //                 routeId = responseData;
-        //                 $('#routeResponse').text('Route ' + responseData + ' granted');
-        //             },
-        //             error: function(responseData, textStatus, errorThrown) {
-        //                 $('#routeResponse').text('Route not granted!');
-        //             }
-        //         });
-        //     } else {
-        //         $('#routeResponse').text('You must have a grabbed train!');
-        //     }
-        // });
+        $('#requestRouteButton').click(function() {
+            $('#routeResponse').text('Waiting');
+            source = $('#signalIdFrom').val();
+            destination = $('#signalIdTo').val();
+            if (sessionId != 0 && grabId != -1) {
+                $.ajax({
+                    type: 'POST',
+                    url: url + '/driver/request-route',
+                    crossDomain: true,
+                    data: {
+                        'session-id': sessionId,
+                        'grab-id': grabId,
+                        'source': source,
+                        'destination': destination
+                    },
+                    dataType: 'text',
+                    success: function(responseData, textStatus, jqXHR) {
+                        routeId = responseData;
+                        $('#routeResponse').text('Route ' + responseData + ' granted');
+                    },
+                    error: function(responseData, textStatus, errorThrown) {
+                        $('#routeResponse').text('Route not granted!');
+                    }
+                });
+            } else {
+                $('#routeResponse').text('You must have a grabbed train!');
+            }
+        });
 
-        // $('#driveRouteButton').click(function() {
-        //     $('#routeResponse').text('Waiting');
-        //     if (sessionId != 0 && grabId != -1) {
-        //         $.ajax({
-        //             type: 'POST',
-        //             url: url + '/driver/drive-route',
-        //             crossDomain: true,
-        //             data: { 'session-id': sessionId, 'grab-id': grabId, 'route-id': routeId },
-        //             dataType: 'text',
-        //             success: function(responseData, textStatus, jqXHR) {
-        //                 $('#routeResponse')
-        //                     .text('Route ' + responseData + ' driving completed');
-        //             },
-        //             error: function(responseData, textStatus, errorThrown) {
-        //                 $('#routeResponse').text('Route could not be driven!');
-        //             }
-        //         });
-        //     } else {
-        //         $('#routeResponse').text('You must have a grabbed train!');
-        //     }
-        // });
+        $('#driveRouteButton').click(function() {
+            $('#routeResponse').text('Waiting');
+            if (sessionId != 0 && grabId != -1) {
+                $.ajax({
+                    type: 'POST',
+                    url: url + '/driver/drive-route',
+                    crossDomain: true,
+                    data: { 'session-id': sessionId, 'grab-id': grabId, 'route-id': routeId },
+                    dataType: 'text',
+                    success: function(responseData, textStatus, jqXHR) {
+                        $('#routeResponse')
+                            .text('Route ' + responseData + ' driving completed');
+                    },
+                    error: function(responseData, textStatus, errorThrown) {
+                        $('#routeResponse').text('Route could not be driven!');
+                    }
+                });
+            } else {
+                $('#routeResponse').text('You must have a grabbed train!');
+            }
+        });
 
         // $('#releaseRouteButton').click(function() {
         //     $('#releaseRouteResponse').text('Waiting');
@@ -366,6 +366,38 @@ $(document).ready(function() {
             position = signals.indexOf(signal);
             if (position > 0) {
                 $('#signalId:text').val(signals[position - 1]);
+            }
+        });
+
+        $('#signalMinusFrom').click(function() {
+            signal = $('#signalIdFrom').val();
+            position = signals.indexOf(signal);
+            if (position > 0) {
+                $('#signalIdFrom:text').val(signals[position - 1]);
+            }
+        });
+
+        $('#signalMinusTo').click(function() {
+            signal = $('#signalIdTo').val();
+            position = signals.indexOf(signal);
+            if (position > 0) {
+                $('#signalIdTo:text').val(signals[position - 1]);
+            }
+        });
+
+        $('#signalPlusFrom').click(function() {
+            signal = $('#signalIdFrom').val();
+            position = signals.indexOf(signal);
+            if (position < signals.length - 1) {
+                $('#signalIdFrom:text').val(signals[position + 1]);
+            }
+        });
+
+        $('#signalPlusTo').click(function() {
+            signal = $('#signalIdTo').val();
+            position = signals.indexOf(signal);
+            if (position < signals.length - 1) {
+                $('#signalIdTo:text').val(signals[position + 1]);
             }
         });
 
